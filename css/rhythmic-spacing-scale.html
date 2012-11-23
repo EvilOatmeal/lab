@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Rhythmic spacing scale</title>
+    <style>
+        body {
+            font: 16px/1.5 Arial, sans-serif; /* 16px/24px */
+        }
+        
+        table {
+            border-collapse: collapse;
+        }
+        
+        table th,
+        table td {
+            padding: 1px 12px;
+        }
+        
+        table div {
+            width: 50px;
+            background: #555;
+        }
+        
+        .base {
+            font-weight: bold;
+            background: #d8d8d8;
+        }
+        
+        .keyStep {
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Rhythmic spacing scale</h1>
+
+<p>When setting whitespace and line-heights a spacing rhythm is defined on a scale around a base number (magical number), and this rhythmic scale is then used consistently throughout the design.</p>
+
+<p>It's nice too set the default whitespace and line-height values of off key steps in the rhythmic scale for a pleasing vertical rhythm.</p>
+
+<h2>Nice reading about rhythm and "the magical number/scale"</h2>
+
+<ul>
+	<li><a href=""></a></li>
+</ul>
+
+<h2>Base 20px</h2>
+
+<p>Base size is 20px.</p>
+    
+<table>
+    <thead>
+        <tr>
+            <th>Pixels</th>
+            <th>% of base</th>
+            <th>Example</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>5</td><td>25%</td><td><div style="height:5px;"></div></td></tr>
+        <tr class="keyStep"><td>10</td><td>50%</td><td><div style="height:10px;"></div></td></tr>
+        <tr><td>15</td><td>75%</td><td><div style="height:15px;"></div></td></tr>
+        <tr class="base"><td>20</td><td>100%</td><td><div style="height:20px;"></div></td></tr>
+        <tr><td>25</td><td>125%</td><td><div style="height:25px;"></div></td></tr>
+        <tr class="keyStep"><td>30</td><td>150%</td><td><div style="height:30px;"></div></td></tr>
+        <tr><td>35</td><td>175%</td><td><div style="height:35px;"></div></td></tr>
+        <tr class="keyStep"><td>40</td><td>200%</td><td><div style="height:40px;"></div></td></tr>
+    </tbody>
+</table>
+
+<h2>Base 24px</h2>
+
+<p>Base size is 24px, and each step on the scale is 3px away from the previous step.</p>
+
+<p>Nice with 16px font-size and 24px line-height.</p>
+    
+<table>
+    <thead>
+        <tr>
+            <th>Pixels</th>
+            <th>% of base</th>
+            <th>Example</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>3</td><td>12.5%</td><td><div style="height:3px;"></div></td></tr>
+        <tr><td>6</td><td>25%</td><td><div style="height:6px;"></div></td></tr>
+        <tr><td>9</td><td>37.5%</td><td><div style="height:9px;"></div></td></tr>
+        <tr class="keyStep"><td>12</td><td>50%</td><td><div style="height:12px;"></div></td></tr>
+        <tr><td>15</td><td>62.5%</td><td><div style="height:15px;"></div></td></tr>
+        <tr><td>18</td><td>75%</td><td><div style="height:18px;"></div></td></tr>
+        <tr><td>21</td><td>87.5%</td><td><div style="height:21px;"></div></td></tr>
+        <tr class="base"><td>24</td><td>100%</td><td><div style="height:24px;"></div></td></tr>
+        <tr><td>27</td><td>112.5%</td><td><div style="height:27px;"></div></td></tr>
+        <tr><td>30</td><td>125%</td><td><div style="height:30px;"></div></td></tr>
+        <tr><td>33</td><td>137.5</td><td><div style="height:33px;"></div></td></tr>
+        <tr class="keyStep"><td>36</td><td>150%</td><td><div style="height:36px;"></div></td></tr>
+        <tr><td>39</td><td>162.5%</td><td><div style="height:39px;"></div></td></tr>
+        <tr><td>42</td><td>175%</td><td><div style="height:42px;"></div></td></tr>
+        <tr><td>45</td><td>187.5%</td><td><div style="height:45px;"></div></td></tr>
+        <tr class="keyStep"><td>48</td><td>200%</td><td><div style="height:48px;"></div></td></tr>
+        <tr><td>60</td><td>250%</td><td><div style="height:60px;"></div></td></tr>
+        <tr><td>72</td><td>300%</td><td><div style="height:72px;"></div></td></tr>
+    </tbody>
+</table>
+
+</body>
+</html>
