@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Payment forms</title>
+    <style>
+        body {
+            font: 100%/1.5 sans-serif;
+        }
+        .test-form {
+            max-width: 20em;
+            padding: 0 1em;
+            border: 1px solid #aaa;
+            border-radius: 1em;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, .1);
+        }
+        .form-heading {
+            font-weight: bold;
+            font-size: 1.25em;
+            line-height: 1.2;
+        }
+        .accepted-cards li {
+            -webkit-transition: opacity .1s;
+            -moz-transition: opacity .1s;
+            -o-transition: opacity .1s;
+            transition: opacity .1s;
+        }
+        .filtered-cards li {
+            opacity: 0.3;
+        }
+        .filtered-cards .selected-card {
+            opacity: 1;
+        }
+        
+        .field-error {
+            background: #ffebeb;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Payment forms</h1>
+
+<h2>Credit cards</h2>
+
+<ul>
+	<li><a href="http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm">Credit Card Account Numbers for testing</a></li>
+	<li><a href="http://webstandardssherpa.com/reviews/auto-detecting-credit-card-type/">Auto-detecting Credit Card Type by Nicholas Zakas</a></li>
+</ul>
+
+<div class="test-form">
+    <p class="form-heading">Credit card information</p>
+    
+    <ul id="accepted-cards" class="accepted-cards">
+        <li id="card-amex">Americal Express</li>
+        <li id="card-diners-club">Diners Club</li>
+        <li id="card-discover">Discover</li>
+        <li id="card-jcb">JCB</li>
+        <li id="card-mastercard">MasterCard</li>
+        <li id="card-maestro">Maestro</li>
+        <li id="card-visa">Visa</li>
+    </ul>
+    
+    <p>
+        <label>
+            Card number:
+            <input id="card-number" type="text" autofocus>
+        </label>
+    </p>
+</div>
+
+<script>
+    (function(d) {
+        var cardNumberField = d.getElementById('card-number');
+        var acceptedCards = d.getElementById('accepted-cards');
+        var selectedType = null;
+        
+        function getCardType(cardNumber) {
+            var type = null;
+            
+            if (/^3[47]/.test(cardNumber)) {
+                type = 'amex';
+            } else if (/^3[06]/.test(cardNumber)) {
+                type = 'diners-club';
+            } else if (/^65/.test(cardNumber)) {
+                type = 'discover';
+            } else if (/^35/.test(cardNumber)) {
+                type = 'jcb';
+            } else if (/^5[0-5]/.test(cardNumber)) {
+                type = 'mastercard';
+            } else if (/^56|67/.test(cardNumber)) {
+                type = 'maestro';
+            } else if (/^4/.test(cardNumber)) {
+                type = 'visa';
+            }
+            
+            return type;
+        };
+        
+        function isCardNumberValidFormat(cardNumber) {
+            var sum = 0;
+            var alt = false;
+            var i = cardNumber.length - 1;
+            var num;
+            
+            if (cardNumber.length < 13 || cardNumber.length > 19) {
+                return false;
+            }
+            
+            while (i >= 0) {
+                num = parseInt(cardNumber.charAt(i), 10);
+                
+                if (isNaN(num)) {
+                    return false;
+                }
+                
+                if (alt) {
+                    num *= 2;
+                    if (num > 9) {
+                        num = (num % 10) + 1;
+                    }
+                }
+                
+                alt = !alt;
+                
+                sum += num;
+                
+                i--;
+            }
+            
+            return (sum % 10 == 0);
+        };
+        
+        function handleCardNumber(e) {
+            var cardNumber = e.target.value.replace(/[\s-]+/g, '');
+            var type = getCardType(cardNumber);
+            
+            // Set valid format state
+            
+            if (isCardNumberValidFormat(cardNumber)) {
+                e.target.className = e.target.className.replace(' field-error', '');
+            } else {
+                e.target.className += ' field-error';
+            }
+            
+            // Set card type state
+            
+            if (selectedType && selectedType != type) {
+                d.getElementById('card-' + selectedType).setAttribute('class', '');
+            }
+            
+            if (type && type != selectedType) {
+                d.getElementById('card-' + type).setAttribute('class', 'selected-card');
+            }
+            
+            if (type && !selectedType) {
+                acceptedCards.className += ' filtered-cards';
+            }
+            
+            if (!type && selectedType) {
+                acceptedCards.className = acceptedCards.className.replace(' filtered-cards', '');
+            }
+            
+            selectedType = type;
+        };
+        
+        cardNumberField.addEventListener('keyup', handleCardNumber, false);
+        cardNumberField.addEventListener('blur', handleCardNumber, false);
+    }(document));
+</script>
+
+</body>
+</html>
