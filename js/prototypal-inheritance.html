@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Prototypal inheritance in JavaScript</title>
+</head>
+<body>
+
+<p>View source and console.</p>
+
+<p>What's the workaround to access private variables with methods added to the prototype?</p>
+
+<ul id="menu"></ul>
+
+<script>
+    function Animal(name, species) {
+        var timesSighed = 0;
+        
+        this.name = name;
+        this.species = species;
+    }
+    Animal.prototype.greet = function() {
+        return 'Hello! I am ' + this.name + ' the ' + this.species + '!';
+    }
+    Animal.prototype.sigh = function() {
+        var timesSighed = 0;
+        timesSighed++;
+        return '*' + this.name + ' the ' + this.species + ' sighs for the ' + timesSighed + ' time*';
+    };
+    
+    function Dog(name, size) {
+        Animal.call(this, name, 'dog');
+        this.size = size;
+    };
+    Dog.prototype = new Animal();
+    Dog.prototype.wiggle = function() {
+        return this.name + ' does a ' + this.size + ' wiggle!';
+    }
+    
+    var cow = new Animal('Kossan', 'cow');
+    console.log(cow);
+    console.log(cow.greet());
+    console.log(cow.sigh());
+    console.log(cow.sigh());
+    
+    var dog = new Dog('Lilla Hunden', 'small');
+    console.log(dog);
+    console.log(dog.greet());
+    console.log(dog.wiggle());
+</script>
+
+</body>
+</html>
