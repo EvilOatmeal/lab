@@ -34,6 +34,7 @@
         
         .field-error {
             background: #ffebeb;
+            border-color: #fbb;
         }
     </style>
 </head>
@@ -46,6 +47,7 @@
 <ul>
 	<li><a href="http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm">Credit Card Account Numbers for testing</a></li>
 	<li><a href="http://webstandardssherpa.com/reviews/auto-detecting-credit-card-type/">Auto-detecting Credit Card Type by Nicholas Zakas</a></li>
+	<li><a href="http://www.nczonline.net/blog/2009/08/04/computer-science-in-javascript-credit-card-number-validation/">Credit Card Number Format Validation by Nicholas Zakas</a></li>
 </ul>
 
 <div class="test-form">
@@ -64,7 +66,7 @@
     <p>
         <label>
             Card number:
-            <input id="card-number" type="text" autofocus>
+            <input id="card-number" type="text" autofocus size="30">
         </label>
     </p>
 </div>
@@ -107,6 +109,7 @@
                 return false;
             }
             
+            // http://en.wikipedia.org/wiki/Luhn_algorithm
             while (i >= 0) {
                 num = parseInt(cardNumber.charAt(i), 10);
                 
@@ -139,7 +142,8 @@
             
             if (isCardNumberValidFormat(cardNumber)) {
                 e.target.className = e.target.className.replace(' field-error', '');
-            } else {
+            } else if (e.target.className.indexOf('field-error') == -1) {
+                console.log(e.target.className.indexOf('field-error'));
                 e.target.className += ' field-error';
             }
             
