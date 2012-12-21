@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>requestAnimationFrame</title>
+    <style>
+        #animateMe {
+            position: relative;
+            width: 10px;
+            height: 10px;
+            background: #f00;
+        }
+    </style>
+</head>
+<body>
+
+<p>View source and browser dev tools performance monitor.</p>
+
+<p><label><input type="checkbox" id="animate" checked> Play animation</label></p>
+
+<p><label><input type="checkbox" id="useRAF" disabled> Use requestAnimationFrame</label></p>
+
+<div id="animateMe"></div>
+
+<script>
+    var animate = document.getElementById('animate')
+    var useRAF = document.getElementById('useRAF');
+    
+    var el = document.getElementById('animateMe');
+    var pos = 0;
+    var increasePos = true;
+    
+    animate.addEventListener('change', callFrame, false);
+    
+    var requestAnimationFrame = window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame;
+    
+    function setTimeoutFrame(func) {
+        var assumedFps = 60;
+        setTimeout(func, 1000 / assumedFps);
+    }
+    
+    function callFrame() {
+        if (animate.checked) useRAF.checked ? requestAnimationFrame(frame) : setTimeoutFrame(frame);
+    }
+    
+    function frame() {
+        if (pos >= 100) { increasePos = false; }
+        else if (pos <= 0) { increasePos = true; }
+        pos += increasePos ? 0.5 : -0.5;
+        animateMe.style.left = pos + '%';
+        callFrame();
+    }
+    
+    if (requestAnimationFrame) {
+        useRAF.removeAttribute('disabled');
+        useRAF.checked = true;
+    }
+    
+    callFrame();
+</script>
+
+</body>
+</html>
