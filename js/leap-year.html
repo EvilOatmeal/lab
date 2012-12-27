@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Prototypal inheritance in JavaScript</title>
+</head>
+<body>
+
+<p>View source.</p>
+
+<p id="out"></p>
+
+<script>
+    var currentYear = new Date().getFullYear(),
+        elOut = document.getElementById('out'),
+        i;
+    
+    function isLeapYear (year) {
+        return new Date(year, 1, 29).getDate() == 29;
+    }
+    
+    for (i = 0; i < 10; i++) {
+        elOut.innerHTML += (currentYear + i) + ' ' + isLeapYear(currentYear + i) + '<br>';
+    }
+</script>
+
+</body>
+</html>
