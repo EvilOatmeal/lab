@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<title>Page gutters</title>
+    <style>
+        body {
+            margin: 0;
+            font: 16px/1.5 Arial, sans-serif;
+        }
+        
+        .wrap {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .withPadding {
+            padding: 0 5%;
+        }
+        
+        .lipsum {
+            color: #bbb;
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrap withPadding">
+    <h1>Page gutters</h1>
+    
+    <p>It's important to use page gutters to let the content breath so it's easier to read.</p>
+    
+    <p>Pages with a max width usually have nice gutters, but when the window is too narrow or you zoom the page these gutters might dissapear completely and the content will touch the edge of the window, making the text hader to read.</p>
+    
+    <p>To fix this you can add horizontal margin or padding to a wrapping element of the page, then when the window is narrower than the pages max width this padding will make sure you still have a gutter.</p>
+    
+    <p>On this page, if your browser window is wide enough you'll see everything in a nice centered column with gutters on both sides. But if you make the window narrower you'll see that section 1 keeps a gutter around it while section 2 does not.</p>
+    
+    <h2>Section 1 uses padding on its wrapping element</h2>
+    
+    <p class="lipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lectus sem. Phasellus sit amet ligula sem, ac lobortis nulla. Donec consequat dui sed mi commodo feugiat. Suspendisse potenti. Pellentesque quis massa id metus pharetra aliquet. Proin et sapien odio, sed ultrices ligula.</p>
+</div>
+
+<div class="wrap">
+    <h2>Section 2 does not use padding</h2>
+    
+    <p class="lipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lectus sem. Phasellus sit amet ligula sem, ac lobortis nulla. Donec consequat dui sed mi commodo feugiat. Suspendisse potenti. Pellentesque quis massa id metus pharetra aliquet. Proin et sapien odio, sed ultrices ligula.</p>
+</div>
+
+</body>
+</html>
