@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Undefined and ReferenceError in JavaScript</title>
+</head>
+<body>
+
+<h1>Undefined and ReferenceError in JavaScript</h1>
+
+<p>Why does undefined values give a <em>ReferenceError</em> when checked if they're falsy?</p>
+
+<p>This code gives a <em>ReferenceError</em>:</p>
+
+<pre><code>if (foo) console.log('foo foo!')</code></pre>
+
+<p>But when I create a reference to the variable, after it's usage even,
+I don't get that error. Silly!</p>
+
+<pre><code>if (foo) console.log('foo foo!')
+var foo</code></pre>
+
+<p>Why can't I just test for undefined values by checking if the value is falsy,
+instead of having to use <code>typeof</code>?</p>
+
+<script>
+	// foo gives no errors
+	console.log(typeof foo)
+	if (foo) console.log('foo foo!')
+	var foo
+	
+	// bar does give errors... whyyyy?
+	console.log(typeof bar)
+	if (bar) console.log('bar bar!')
+</script>
+
+</body>
+</html>
