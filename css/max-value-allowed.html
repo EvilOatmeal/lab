@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Max value allowed</title>
+	<style>
+		.results p {
+			position: relative;
+			padding-left: 30px;
+		}
+	
+		#forTesting {
+			position: absolute;
+		}
+		
+		#thisWorks,
+		#thisFails {
+			position: absolute;
+			left: 0;
+			width: 20px;
+			height: 20px;
+		}
+		
+		#thisWorks {
+			background: #0f0;
+		}
+		
+		#thisFails {
+			background: #f00;
+		}
+	</style>
+</head>
+<body>
+
+<h1>Max value allowed</h1>
+
+<p>Some browsers have a max value they allow on properties like <em>top</em> and <em>margin</em>, beyond that they fail and treat the value as <em>0</em>.</p>
+
+<p>This test tries to find the max value in the browser that you run it in.</p>
+
+<h2>Test</h2>
+
+<p>Firefox doesn't have a max it seems, or it's really large, so this test fails there.</p>
+
+<span id="forTesting"></span>
+
+<div class="results">
+	<p>
+		The green &lt;span> in this paragraph should be positioned offscreen. It has <code>left: <span id="worksNumber"></span>px;</code>
+		<span id="thisWorks"></span>
+	</p>
+	
+	<p>
+		The red &lt;span> in this paragraph "should" fail and be visible. It has <code>left: <span id="failsNumber"></span>px;</code>
+		<span id="thisFails"></span>
+	</p>
+</div>
+
+<script>
+	var w = window,
+		d = w.document,
+		testEl = d.getElementById('forTesting'),
+		worksEl = d.getElementById('thisWorks'),
+		worksNumEl = d.getElementById('worksNumber'),
+		failsEl = d.getElementById('thisFails'),
+		failsNumEl = d.getElementById('failsNumber')
+	
+	function getLeftPos() {
+		return parseInt(w.getComputedStyle(testEl).left)
+	}
+	
+	function runTest(iMax) {
+		var pos = 5000000000,
+			works = null,
+			fails = null,
+			i = 0,
+			iMax = iMax || 10000
+		
+		while (works + 1 !== fails && i < iMax) {
+			testEl.style.left = pos + 'px'
+			
+			if (getLeftPos() > 0) {
+				works = pos
+				pos += fails !== null ? Math.round((fails - works) / 2) : 100000000
+			} else {
+				fails = pos
+				pos -= Math.round((fails - works) / 2)
+			}
+			
+			i++
+		}
+		
+//		console.log(i, iMax, '  works', works, '  fails', fails, '  diff', fails - works)
+		
+		worksEl.style.left = works + 'px'
+		worksNumEl.innerHTML = works
+		failsEl.style.left = fails + 'px'
+		failsNumEl.innerHTML = fails
+	}
+	
+	runTest()
+</script>
+
+</body>
+</html>
