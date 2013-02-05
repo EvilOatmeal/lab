@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS Selectors</title>
+	<style>
+	body {
+		margin: 1.5em 5%;
+		font: 100%/1.5 Arial, sans-serif;
+	}
+	
+	/*
+		No ID selectors
+	*/
+	
+	.noIdSelectors_invertedBox,
+	#noIdSelectors_invertedBox {
+		padding: .75em;
+		background: #333;
+	}
+	
+		.noIdSelectors_invertedBox a,
+		#noIdSelectors_invertedBox a {
+			color: #fff;
+		}
+	
+	.noIdSelectors_widget {
+		padding: .75em;
+		background: #eaeaea;
+	}
+	
+		.noIdSelectors_widget a {
+			color: #228;
+		}
+	</style>
+</head>
+<body>
+
+<h1>CSS Selectors</h1>
+
+<h2>No ID selectors</h2>
+
+<div class="noIdSelectors">
+	<p>
+		So you have this widget that you want to place anywhere on your page,
+		but to do this you need to keep your selectors at the same specificity,
+		or else you will have some rules whose properties will always overwrite
+		those of rules with selectors that have lower specificity, and it won't 
+		be possible to place your widget wherever you want to.
+	</p>
+	
+	<p>Here is the widget we will use. It only uses class selectors.</p>
+	
+	<p class="noIdSelectors_widget"><a href="javascript:;">I'm a modular widget. Place me anywhere!</a></p>
+	
+	<p>
+		Here we place the widget inside a box that uses an ID selector, which has higher specificity
+		than the widget and causes some of the widgets properties to always be overwritten.
+	</p>
+	
+	<div id="noIdSelectors_invertedBox">
+		<p><a href="javascript:;">This box uses an <strong>ID</strong> selector.</a></p>
+		<p class="noIdSelectors_widget"><a href="javascript:;">I'm a modular widget. Place me anywhere!</a></p>
+	</div>
+	
+	<p>And here is the same design refactored to only use class selectors.</p>
+	
+	<div class="noIdSelectors_invertedBox">
+		<p><a href="javascript:;">This box uses a <strong>class</strong> selector.</a></p>
+		<p class="noIdSelectors_widget"><a href="javascript:;">I'm a modular widget. Place me anywhere!</a></p>
+	</div>
+</div>
+
+</body>
+</html>
