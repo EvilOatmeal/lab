@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<title>"-webkit-text-side-adjust: none" disables text zoom</title>
+    <style>
+        body {
+            margin: 0 5%;
+			color: #000;
+			background: #fff;
+            font: 14px/1.5 Arial, sans-serif;
+        }
+        
+		.badStuff {
+			-webkit-text-size-adjust: none;
+			color: #400;
+			background: #fee;
+		}
+		
+		code {
+			margin: 0 -.2em;
+			padding: 0 .2em;
+			color: #222;
+			background: #eee;
+		}
+    </style>
+</head>
+<body>
+
+<h1><code>-webkit-text-side-adjust: none</code> disables text zoom</h1>
+
+<ul>
+	<li>
+		<a href="http://www.456bereastreet.com/archive/201011/beware_of_-webkit-text-size-adjustnone/">
+			"Beware of -webkit-text-size-adjust:none" by Roger Johansson on 456bereastreet.com
+		</a>
+	</li>
+</ul>
+
+<h2>Test</h2>
+
+<p><strong>Zoom this page</strong> so the text gets larger.</p>
+
+<p>The next paragraph won't scale because it has <code>-webkit-text-size-adjust: none</code> set on it.</p>
+	
+<p class="badStuff">This text won't scale on zoom.</p>
+
+</body>
+</html>
