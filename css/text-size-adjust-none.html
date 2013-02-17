@@ -2,7 +2,8 @@
 <html lang="en-US">
 <head>
 	<meta charset="utf-8">
-	<title>"-webkit-text-side-adjust: none" disables text zoom</title>
+	<title>"-webkit-text-size-adjust: none" disables text zoom in desktop browsers</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
             margin: 0 5%;
@@ -10,12 +11,6 @@
 			background: #fff;
             font: 14px/1.5 Arial, sans-serif;
         }
-        
-		.badStuff {
-			-webkit-text-size-adjust: none;
-			color: #400;
-			background: #fee;
-		}
 		
 		code {
 			margin: 0 -.2em;
@@ -23,27 +18,45 @@
 			color: #222;
 			background: #eee;
 		}
+        
+		.badStuff {
+			-webkit-text-size-adjust: none;
+			color: #400;
+			background: #fee;
+		}
+        
+		.goodStuff {
+			-webkit-text-size-adjust: 100%;
+			color: #040;
+			background: #efe;
+		}
     </style>
 </head>
 <body>
 
-<h1><code>-webkit-text-side-adjust: none</code> disables text zoom</h1>
+<h1><code>-webkit-text-size-adjust: none</code> disables text zoom in desktop browsers</h1>
 
-<ul>
-	<li>
-		<a href="http://www.456bereastreet.com/archive/201011/beware_of_-webkit-text-size-adjustnone/">
-			"Beware of -webkit-text-size-adjust:none" by Roger Johansson on 456bereastreet.com
-		</a>
-	</li>
-</ul>
+<p>
+	<code>-webkit-text-size-adjust</code> is used to prevent iPhone and iPads from resizing
+	the text when you change the devices orientation. But when using the value of
+	<strong><code>none</code></strong> it will also disable the ability to zoom the text on
+	desktop browsers. This doesn't happen with the value <strong><code>100%</code></strong>,
+	and it still fixes the text scaling on orientation change problem.
+</p>
+
+<p>So use <code>-webkit-text-size-adjust: <strong>100%</strong></code></p>
 
 <h2>Test</h2>
 
 <p><strong>Zoom this page</strong> so the text gets larger.</p>
 
-<p>The next paragraph won't scale because it has <code>-webkit-text-size-adjust: none</code> set on it.</p>
+<p>The next paragraph won't scale because it has <code>-webkit-text-size-adjust: <strong>none</strong></code> set on it.</p>
 	
 <p class="badStuff">This text won't scale on zoom.</p>
+
+<p>Instead use <code>-webkit-text-size-adjust: <strong>100%</strong></code>, like I've done on the next paragraph.</p>
+
+<p class="goodStuff">This text will scale on zoom.</p>
 
 </body>
 </html>
