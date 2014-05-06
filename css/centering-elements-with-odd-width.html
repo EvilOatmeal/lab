@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Wonky pixel shit</title>
+  <style>
+  div > div {
+    padding: 0 10px;
+  }
+
+  .page {
+    width: 400px;
+    margin: 10px auto;
+    background: #ccc;
+  }
+
+  .left {
+    width: 300px;
+    background: #0c0;
+  }
+
+  .center {
+    width: 350px;
+    margin: 0 auto;
+    background: #c00;
+  }
+
+  .center.odd {
+    width: 351px;
+  }
+  </style>
+</head>
+<body>
+
+<p>Resize your browser width slowly too see how the centered div has wonky positioning because it is an odd number of pixels wide.</p>
+
+<p>Wonkyness while resizing the browser is not the problem though; it is that you don't know how wide your users browser is so you don't know if the centered element is 1px to the left or right at the center, which can cause some pixel perfect designs to look ugly.</p>
+
+<p>I should add an example of a design where this causes issues......</p>
+
+<div class="page">
+  Even
+  <div class="center">
+    center
+  </div>
+  <div class="left">
+    left
+  </div>
+</div>
+
+<div class="page">
+  Odd
+  <div class="center odd">
+    center
+  </div>
+  <div class="left">
+    left
+  </div>
+</div>
+
+</body>
+</html>
