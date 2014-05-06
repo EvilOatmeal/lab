@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Semicolons in JavaScript</title>
+</head>
+<body>
+
+<h1>Semicolons in JavaScript</h1>
+
+<ul>
+	<li><a href="http://mislav.uniqpath.com/2010/05/semicolons/">"Semicolons in JavaScript are optional" by Mislav Marohnić</a></li>
+</ul>
+
+
+<h2>When using no semicolons fails</h2>
+
+<h3>If you have the return value on a new line</h3>
+
+This:
+
+<pre><code>return
+    true</code></pre>
+
+Is interpreted as:
+
+<pre><code>return;
+    true;</code></pre>
+
+Fix it by writing it all on one line instead:
+
+<pre><code>return true</code></pre>
+
+
+<h3>If a line starts with parenthesis</h3>
+
+This:
+
+<pre><code>a = b + c
+(d + e).print()</code></pre>
+
+Is interpreted as:
+
+<pre><code>a = b + c(d + e).print()</code></pre>
+
+<p>The ugly fix, unless you want to add semicolons to the end of lines, is to 
+add a semicolon to the beginning of every line that begins with a parenthesis.</p>
+
+<pre><code>a = b + c
+;(d + e).print()</code></pre>
+
+</body>
+</html>
