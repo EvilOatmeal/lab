@@ -1,0 +1,35 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <title>Setting js/no-js classes on the html element to control CSS</title>
+
+  <style>
+    html.js .has-js,
+    html.no-js .has-no-js { display: inline; }
+
+    html.js .has-no-js,
+    html.no-js .has-js { display: none; }
+  </style>
+
+  <script>
+    (function(cl) {
+      if (cl) {
+        cl.remove('no-js');
+        cl.add('js');
+      }
+    }(document.documentElement.classList));
+  </script>
+</head>
+<body>
+
+<h1>Setting js/no-js classes on the html element to control CSS</h1>
+
+<p>
+  You have:
+  <code class="has-js">js</code>
+  <code class="has-no-js">no-js</code>
+</p>
+
+</body>
+</html>
