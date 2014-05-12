@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>aNumUnique</title>
+</head>
+<body>
+
+View source and dev console.
+
+<script>
+  function aNumUnique(a) {
+    var unique = {};
+    var count = 0;
+    a.forEach(function(i) {
+      !unique[i] && (unique[i] = ++count);
+    });
+    return count;
+  }
+
+  [
+    [],
+    [0],
+    [0, 1],
+    [0, 0, 1],
+    [0, 0, 1, 1, 2]
+  ].forEach(function(a) {
+      console.log(aNumUnique(a), '[' + a.toString() + ']');
+  });
+</script>
+
+</body>
+</html>
