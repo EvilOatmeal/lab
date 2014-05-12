@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nesting</title>
+</head>
+<body>
+
+View source and dev console.
+
+<script>
+  function nesting(s) {
+    var i = 0;
+    var isClosed = 0;
+
+    for (; i < s.length; i++) {
+      if (s.charAt(i) === '(') {
+        isClosed++;
+      } else if  (s.charAt(i) === ')') {
+        isClosed--;
+      }
+
+      if (isClosed < 0) {
+        return 0;
+      }
+    }
+
+    return isClosed > 0 ? 0 : 1;
+  }
+
+  console.log(1, nesting('()'));
+  console.log(1, nesting('(())'));
+  console.log(1, nesting('()()'));
+  console.log(1, nesting('(()())'));
+  console.log(1, nesting('(a)a(a)'));
+
+  console.log(0, nesting('())('));
+  console.log(0, nesting('()('));
+</script>
+
+</body>
+</html>
