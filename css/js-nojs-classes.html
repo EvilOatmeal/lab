@@ -13,12 +13,15 @@
   </style>
 
   <script>
-    (function(cl) {
-      if (cl) {
-        cl.remove('no-js');
-        cl.add('js');
+    (function(el) {
+      // IE 10+
+      if (el.classList) {
+        el.classList.remove('no-js');
+        el.classList.add('js');
+      } else {
+        el.className = el.className.replace(/(\s+|^)no-js(\s+|$)/g, '$1js$2');
       }
-    }(document.documentElement.classList));
+    }(document.documentElement));
   </script>
 </head>
 <body>
